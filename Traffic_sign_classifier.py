@@ -47,28 +47,32 @@ all_classes = np.unique(y_train)
 n_classes = all_classes.size
 
 print("Number of training examples =", n_train)
+print("Number of validation examples =", n_validation)
 print("Number of testing examples =", n_test)
 print("y_test example =", y_test[1])
 print("Image data shape =", image_shape)
 print("Number of classes =", n_classes)
 print("Shape of X_train =", X_train.shape)
+print("Shape of X_valid =", X_valid.shape)
+print("Shape of X_test =", X_test.shape)
+
 print("Signname example =", signnames[0])
 print("signname data type =", type(signnames))
 
-### Data exploration visualization code goes here.
-### Feel free to use as many code cells as needed.
-
-# Visualizations will be shown in the notebook.
-#%matplotlib inline
-
-# # Randomly show n pictures
-# n = 5
-# for i in range(n):
-#     index = np.random.choice(n_train)
-#     image = X_train[index]
-#     plt.imshow(image)
-#     plt.show()
-
+# ### Data exploration visualization code goes here.
+# ### Feel free to use as many code cells as needed.
+#
+# # Visualizations will be shown in the notebook.
+# #%matplotlib inline
+#
+# # # Randomly show n pictures
+# # n = 5
+# # for i in range(n):
+# #     index = np.random.choice(n_train)
+# #     image = X_train[index]
+# #     plt.imshow(image)
+# #     plt.show()
+#
 A4_PORTRAIT = (8.27, 11.69)
 A4_LANDSCAPE = A4_PORTRAIT[::-1]
 n = 10  # Examples to display
@@ -113,13 +117,26 @@ X_valid_new = preprocess_set(X_valid)
 X_test_new = preprocess_set(X_test)
 print("Shape of X_train_new =", X_train_new.shape)
 
-# Randomly show k preprocessed pictures
-k = 5
-for i in range(k):
-    index = np.random.choice(n_train)
-    image = X_train_new[index][:,:,0]
-    plt.imshow(image, cmap='gray')
-    plt.show()
+# # Randomly show k preprocessed pictures
+# k = 5
+# for i in range(k):
+#     index = np.random.choice(n_train)
+#     image = X_train[index]
+#     image_gray = grayscale(image)
+#     image_new = preprocess(image)[:,:,0]
+#     plt.imshow(image)
+#     plt.show()
+#     plt.imshow(image_gray, cmap='gray')
+#     plt.show()
+#     plt.imshow(image_new, cmap='gray')
+#     plt.show()
+#     # image_out = "../examples/image"+str(index)
+#     # image_gray_out = "../examples/image_gray"+str(index)
+#     # image_new_out = "../examples/image_new"+str(index)
+#         # cv2.imwrite(image_out, image)
+#         # cv2.imwrite(image_gray_out, image_gray)
+#         # cv2.imwrite(image_new_out, image_new)
+
 
 ### Define your architecture here.
 ### Feel free to use as many code cells as needed.
@@ -241,19 +258,19 @@ with tf.Session() as sess:
 ### Calculate the accuracy for these 5 new images.
 ### For example, if the model predicted 1 out of 5 signs correctly, it's 20% accurate on these new images.
 
-# # Randomly pick 5 pictures from test set
-# l = 5
-# X_test_own = []
-# y_test_own = []
-# for i in range(l):
-#     index = np.random.choice(n_test)
-#     image = X_test[index]
-#     y_label = y_test[index]
-#     X_test_own.append(image)
-#     y_test_own.append(y_label)
-#     plt.imshow(image)
-#     plt.show()
-
+# # # Randomly pick 5 pictures from test set
+# # l = 5
+# # X_test_own = []
+# # y_test_own = []
+# # for i in range(l):
+# #     index = np.random.choice(n_test)
+# #     image = X_test[index]
+# #     y_label = y_test[index]
+# #     X_test_own.append(image)
+# #     y_test_own.append(y_label)
+# #     plt.imshow(image)
+# #     plt.show()
+#
 # my own 5 images
 import os
 dir = os.listdir("../download_images")
@@ -276,8 +293,14 @@ with tf.Session() as sess:
     test_accuracy = evaluate(X_test_own, y_test_own)
     print("Test Accuracy = {:.3f}".format(test_accuracy))
 
-### Print out the top five softmax probabilities for the predictions on the German traffic sign images found on the web.
-### Feel free to use as many code cells as needed.
+# test on test images
+with tf.Session() as sess:
+    saver.restore(sess, tf.train.latest_checkpoint('.'))
+    test_accuracy = evaluate(X_test_new, y_test)
+    print("Test Accuracy = {:.3f}".format(test_accuracy))
+
+# ### Print out the top five softmax probabilities for the predictions on the German traffic sign images found on the web.
+# ### Feel free to use as many code cells as needed.
 with tf.Session() as sess:
     saver.restore(sess, tf.train.latest_checkpoint('.'))
     softmaxes = sess.run(tf.nn.softmax(logits), feed_dict={x: X_test_own, y: y_test_own})
