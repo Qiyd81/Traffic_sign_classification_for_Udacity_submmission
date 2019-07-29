@@ -1,0 +1,184 @@
+Traffic_sign_classifier Console result backup
+/anaconda3/envs/self_drving_env/bin/python3.7m /Applications/PyCharm.app/Contents/helpers/pydev/pydevconsole.py 49686 49687
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.extend(['/Users/qiyundong/Qis_learning/Self_driving_engineer/Traffic_sign_classifier'])
+Python 3.7.3 (default, Mar 27 2019, 16:54:48) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.5.0 -- An enhanced Interactive Python. Type '?' for help.
+PyDev console: using IPython 7.5.0
+Python 3.7.3 (default, Mar 27 2019, 16:54:48) 
+[Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
+runfile('/Users/qiyundong/Qis_learning/Self_driving_engineer/Traffic_sign_classifier/CarND-Traffic-Sign-Classifier-Project/Traffic_sign_classifier.py', wdir='/Users/qiyundong/Qis_learning/Self_driving_engineer/Traffic_sign_classifier/CarND-Traffic-Sign-Classifier-Project')
+Number of training examples = 34799
+Number of validation examples = 4410
+Number of testing examples = 12630
+y_test example = 1
+Image data shape = (34798, 32, 32, 3)
+Number of classes = 43
+Shape of X_train = (34799, 32, 32, 3)
+Shape of X_valid = (4410, 32, 32, 3)
+Shape of X_test = (12630, 32, 32, 3)
+Signname example = Speed limit (20km/h)
+signname data type = <class 'pandas.core.series.Series'>
+Speed limit (20km/h)
+Speed limit (30km/h)
+Speed limit (50km/h)
+Speed limit (60km/h)
+Speed limit (70km/h)
+Speed limit (80km/h)
+End of speed limit (80km/h)
+Speed limit (100km/h)
+Speed limit (120km/h)
+No passing
+No passing for vehicles over 3.5 metric tons
+Right-of-way at the next intersection
+Priority road
+Yield
+Stop
+No vehicles
+Vehicles over 3.5 metric tons prohibited
+No entry
+General caution
+Dangerous curve to the left
+Dangerous curve to the right
+Double curve
+Bumpy road
+Slippery road
+Road narrows on the right
+Road work
+Traffic signals
+Pedestrians
+Children crossing
+Bicycles crossing
+Beware of ice/snow
+Wild animals crossing
+End of all speed and passing limits
+Turn right ahead
+Turn left ahead
+Ahead only
+Go straight or right
+Go straight or left
+Keep right
+Keep left
+Roundabout mandatory
+End of no passing
+End of no passing by vehicles over 3.5 metric tons
+Shape of X_train_new = (34799, 32, 32, 1)
+WARNING:tensorflow:From /anaconda3/envs/self_drving_env/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /anaconda3/envs/self_drving_env/lib/python3.7/site-packages/tensorflow/contrib/layers/python/layers/layers.py:1624: flatten (from tensorflow.python.layers.core) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.
+WARNING:tensorflow:From /Users/qiyundong/Qis_learning/Self_driving_engineer/Traffic_sign_classifier/CarND-Traffic-Sign-Classifier-Project/Traffic_sign_classifier.py:192: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+2019-07-28 00:53:55.796771: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2019-07-28 00:53:55.797191: I tensorflow/core/common_runtime/process_util.cc:71] Creating new thread pool with default inter op setting: 12. Tune using inter_op_parallelism_threads for best performance.
+Training...
+EPOCH 1 ...
+Train Accuracy = 0.913
+Validation Accuracy = 0.847
+EPOCH 2 ...
+Train Accuracy = 0.963
+Validation Accuracy = 0.896
+EPOCH 3 ...
+Train Accuracy = 0.969
+Validation Accuracy = 0.898
+EPOCH 4 ...
+Train Accuracy = 0.986
+Validation Accuracy = 0.922
+EPOCH 5 ...
+Train Accuracy = 0.991
+Validation Accuracy = 0.917
+EPOCH 6 ...
+Train Accuracy = 0.996
+Validation Accuracy = 0.928
+EPOCH 7 ...
+Train Accuracy = 0.991
+Validation Accuracy = 0.907
+EPOCH 8 ...
+Train Accuracy = 0.998
+Validation Accuracy = 0.919
+EPOCH 9 ...
+Train Accuracy = 0.996
+Validation Accuracy = 0.915
+EPOCH 10 ...
+Train Accuracy = 0.997
+Validation Accuracy = 0.915
+EPOCH 11 ...
+Train Accuracy = 0.995
+Validation Accuracy = 0.912
+EPOCH 12 ...
+Train Accuracy = 0.995
+Validation Accuracy = 0.911
+EPOCH 13 ...
+Train Accuracy = 0.997
+Validation Accuracy = 0.936
+EPOCH 14 ...
+Train Accuracy = 0.996
+Validation Accuracy = 0.924
+EPOCH 15 ...
+Train Accuracy = 0.996
+Validation Accuracy = 0.932
+Model saved
+['.DS_Store', '14.jpg', '28.jpg', '27.jpg', '26.jpg', '31.jpg']
+X_test_own shape= (5, 32, 32, 3)
+WARNING:tensorflow:From /anaconda3/envs/self_drving_env/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1266: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+INFO:tensorflow:Restoring parameters from ./lenet
+Test Accuracy = 0.600
+INFO:tensorflow:Restoring parameters from ./lenet
+output softmaxes shape = (5, 43)
+The sign name = Stop
+output softmax shape = (43,)
+The top 5 softmax probabilities for Stop are signs 14                    Stop
+15             No vehicles
+2     Speed limit (50km/h)
+38              Keep right
+25               Road work
+Name: SignName, dtype: object
+The top 5 softmax probabilities for Stop = [0.6300235390663147, 0.2009228765964508, 0.08661480993032455, 0.07224088907241821, 0.0030426557641476393]
+The sign name = Children crossing
+output softmax shape = (43,)
+The top 5 softmax probabilities for Children crossing are signs 28                        Children crossing
+30                       Beware of ice/snow
+11    Right-of-way at the next intersection
+1                      Speed limit (30km/h)
+20             Dangerous curve to the right
+Name: SignName, dtype: object
+The top 5 softmax probabilities for Children crossing = [0.9996453523635864, 0.00025367006310261786, 0.00010034601291408762, 2.371570531067846e-07, 1.3240538976333482e-07]
+The sign name = Pedestrians
+output softmax shape = (43,)
+The top 5 softmax probabilities for Pedestrians are signs 11    Right-of-way at the next intersection
+27                              Pedestrians
+18                          General caution
+19              Dangerous curve to the left
+26                          Traffic signals
+Name: SignName, dtype: object
+The top 5 softmax probabilities for Pedestrians = [0.838267982006073, 0.1617060899734497, 2.1740597730968148e-05, 2.3976531338121276e-06, 1.7148955748780281e-06]
+The sign name = Traffic signals
+output softmax shape = (43,)
+The top 5 softmax probabilities for Traffic signals are signs 18                          General caution
+26                          Traffic signals
+27                              Pedestrians
+11    Right-of-way at the next intersection
+37                      Go straight or left
+Name: SignName, dtype: object
+The top 5 softmax probabilities for Traffic signals = [0.9999954700469971, 4.533220817393158e-06, 1.2226005985382926e-08, 6.269487706767052e-11, 2.7266352370380886e-11]
+The sign name = Wild animals crossing
+output softmax shape = (43,)
+The top 5 softmax probabilities for Wild animals crossing are signs 31                    Wild animals crossing
+19              Dangerous curve to the left
+21                             Double curve
+25                                Road work
+11    Right-of-way at the next intersection
+Name: SignName, dtype: object
+The top 5 softmax probabilities for Wild animals crossing = [0.9949628114700317, 0.004959373269230127, 7.779958104947582e-05, 4.230339456512411e-08, 1.1885564532576609e-08]
+INFO:tensorflow:Restoring parameters from ./lenet
+Feature maps for Yield
+First convolutional layer
+Second convolutional layer
