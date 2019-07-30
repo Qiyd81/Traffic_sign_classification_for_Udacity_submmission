@@ -22,11 +22,11 @@ The goals / steps of this project are the following:
 [image1]: ./visualization.jpg "Visualization"
 [image2]: ./speed_limit.jpg "example image"
 [image3]: ./speed_limit_gray.jpg  "grayscaling image"
-[image4]: ./14.jpg "Traffic Sign 1"
-[image5]: ./28.jpg "Traffic Sign 2"
-[image6]: ./27.jpg "Traffic Sign 3"
-[image7]: ./26.jpg "Traffic Sign 4"
-[image8]: ./31.jpg "Traffic Sign 5"
+[image4]: ./4_speedlimit70.jpg "Traffic Sign 1"
+[image5]: ./18_generalcaution.jpg "Traffic Sign 2"
+[image6]: ./25_roadwork.jpg "Traffic Sign 3"
+[image7]: ./21_doublecurve.jpg "Traffic Sign 4"
+[image8]: ./23_siperyroad.jpg "Traffic Sign 5"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -119,9 +119,9 @@ To train the model, I used an following major hyperparameters, loss, and optimiz
 First, use grayscale, normalize to preprocess the image. As the training accuracy not so good, so added histogram equalization, and the results get better. 
 Second, build the LeNet architecture, to train the model, and at the beginning, use only 5 epochs, and then increase to 20 epochs to increase the accuracy. 
 My final model results were:
-* training set accuracy of 0.997
-* validation set accuracy of 0.945 
-* test set accuracy of 0.906
+* training set accuracy of 1.000
+* validation set accuracy of 0.947 
+* test set accuracy of 0.929
 
 
 # may try following later:
@@ -145,65 +145,41 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![Stop sign][image4] ![Children crossing][image5] ![Pedestrains][image6] 
-![Traffic Signals][image7] ![Wild animal crossing][image8]
+![speedlimit70][image4] ![generalcaution][image5] ![roadwork][image6] 
+![doublecurve][image7] ![sliperyroad][image8]
 
 The image7 might be difficult to classify because it has more color information which might affect the test.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 Here are the results of the prediction:
+{1: 'Speed limit (30km/h)', 18: 'General caution', 25: 'Road work', 32: 'End of all speed and passing limits', 11: 'Right-of-way at the next intersection'}
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| Children Crossing		| Children Crossing								|
-| Pedestrians			| Pedestrains (first time test) 	            |Right-of-Way(second time test) wondering why?
-| Traffic Signals   	| General Caution				 				|
-| Wild animals crossing	| Wild animals crossing 						|
-
-
-The model was able to correctly guess 4 of the 5 traffic signs first time, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 90.6%. But when I do it again, it guess 3 of the 5, which gives accuracy of 60%, don't know why yet.
+The model was able to correctly guess 2 of the 5 traffic signs, which gives an accuracy of 40%. This compares favorably to the accuracy on the test set of 92.9%. 
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in cell 12.
 
-The sign name = Children crossing
-The Children crossing's top 5 softmax probabilities is 
-{'Children crossing': 0.9999988079071045, 
- 'End of speed limit (80km/h)': 8.554868600185728e-07, 
- 'Speed limit (60km/h)': 1.6694242788162228e-07, 
- 'Bicycles crossing': 8.684480690135388e-08, 
- 'Beware of ice/snow': 3.407000903621338e-08}
-The sign name = Stop
-The Stop's top 5 softmax probabilities is 
-{'Stop': 0.9639245271682739, 
- 'Ahead only': 0.013333470560610294, 
- 'Speed limit (20km/h)': 0.01261995267122984, 
- 'Yield': 0.009365602396428585, 
- 'Speed limit (60km/h)': 0.0002345522807445377}
-The sign name = Pedestrians
-The Pedestrians's top 5 softmax probabilities is 
-{'Right-of-way at the next intersection': 0.8233627080917358, 
- 'Pedestrians': 0.1766371726989746, 
- 'General caution': 9.366412712097372e-08, 
- 'Roundabout mandatory': 7.228810883219694e-09, 
- 'Double curve': 9.83120043707153e-11}
-The sign name = Wild animals crossing
-The Wild animals crossing's top 5 softmax probabilities is 
-{'Wild animals crossing': 0.9977922439575195, 
- 'Double curve': 0.002207312034443021, 
- 'Slippery road': 3.0659785466014e-07, 
- 'Road narrows on the right': 1.1342833516891915e-07, 
- 'Speed limit (30km/h)': 1.5437134237572536e-08}
-The sign name = Traffic signals
-The Traffic signals's top 5 softmax probabilities is 
-{'General caution': 0.8723551630973816, 
- 'Traffic signals': 0.12733180820941925, 
- 'Right-of-way at the next intersection': 0.0002567098999861628, 
- 'Pedestrians': 5.606142804026604e-05, 
- 'Roundabout mandatory': 9.945258483412545e-08}
+The sign name = Speed limit (70km/h)
+The Speed limit (70km/h)'s top 5 softmax probabilities is 
+{'Speed limit (30km/h)': 0.9998859167098999, 'Traffic signals': 4.859961700276472e-05, 'Bicycles crossing': 4.24961544922553e-05, 'Speed limit (20km/h)': 1.9247689124313183e-05, 'Turn right ahead': 1.6376346820834442e-06}
+
+The sign name = General caution
+The General caution's top 5 softmax probabilities is 
+{'General caution': 0.9999767541885376, 'Pedestrians': 2.2349506252794527e-05, 'Right-of-way at the next intersection': 7.795857754899771e-07, 'Traffic signals': 1.3319395009148138e-07, 'Roundabout mandatory': 5.631173695744285e-13}
+
+The sign name = Road work
+The Road work's top 5 softmax probabilities is 
+{'Road work': 0.9999699592590332, 'Ahead only': 2.3303369744098745e-05, 'Beware of ice/snow': 2.9430909762595547e-06, 'Right-of-way at the next intersection': 2.886951051550568e-06, 'General caution': 5.981185609016393e-07}
+
+The sign name = Double curve
+The Double curve's top 5 softmax probabilities is 
+{'End of all speed and passing limits': 0.9800942540168762, 'Speed limit (30km/h)': 0.01035433541983366, 'Speed limit (50km/h)': 0.009118692018091679, 'Priority road': 0.00024412496713921428, 'Roundabout mandatory': 0.00015965614875312895}
+
+The sign name = Slippery road
+The Slippery road's top 5 softmax probabilities is 
+{'Right-of-way at the next intersection': 0.9783485531806946, 'Priority road': 0.014005016535520554, 'Slippery road': 0.005673960316926241, 'Roundabout mandatory': 0.001967574469745159, 'Pedestrians': 2.409974285910721e-06}
 
 ### (Optional) Visualizing the Neural Network (See line 333-366 for more details)
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
